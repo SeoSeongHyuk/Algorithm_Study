@@ -1,67 +1,37 @@
 import java.util.*;
+import java.util.Stack;
 
-public class Test {
-	
-	public static char [] arr = new char [1000];
-	public static int order = 0;
-	
-	public static void push(char c) {
-		arr[order++] = c;
-	}
-	
-	public static char pop() {
-		if(order == 0) {
-			order--;
-			return ' ';
-		}
-		else {
-			char popone = arr[order];
-			order--;
-			return popone;
-		}
-	}
-	
-	public static boolean isEmpty() {
-		if (order == 0)
-			return true;
-		else 
-			return false;
-	}
-	
-	public static boolean isVPS(String s) {
-		boolean flag = false;
-		for(int i = 0; i < s.length(); i++) {
-			char temp = s.charAt(i);
-			
-			if(temp == '(') {
-				push(temp);
-			}   
-			if (temp == ')') {
-				pop();
-			}
-			//System.out.println(order);
-		}
-		
-		flag = isEmpty();
-		return flag;
-	}
-	
+public class test {
+	public static Scanner sc = new Scanner(System.in);
+
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int t = sc.nextInt();
-		String tmp = "";
-		
-		while(t > 0) {
-			tmp = sc.next();
-			if (isVPS(tmp))
-				System.out.println("YES");
-			else
-				System.out.println("NO");
-			
-			//**
-			arr = new char[1000];
-			order = 0;
-			t--;
+		Stack<Character> stack = new Stack<>();
+		String output = "";
+		int num = sc.nextInt();
+
+		while (num-- > 0) {
+			String result = "YES";
+			String line = sc.next();
+
+			for (int i = 0; i < line.length(); i++) {
+				char tmp = line.charAt(i);
+
+				if (tmp == '(') {
+					stack.push(tmp);
+				} else if (tmp == ')') {
+					if (!stack.isEmpty())
+						stack.pop();
+					else {
+						result = "NO";
+						break;
+					}
+				} else
+					break;
+			}
+			if (!stack.isEmpty())
+				result = "NO";
+			System.out.println(result);
 		}
 	}
+
 }
