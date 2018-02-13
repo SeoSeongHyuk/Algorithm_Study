@@ -1,6 +1,6 @@
 #include <iostream>
 #include <algorithm>
-#include <string>
+
 using namespace std;
 
 long d[10000][10]; // 배열 선언, 초기에 배열은 0으로 초기화 되어 있음.
