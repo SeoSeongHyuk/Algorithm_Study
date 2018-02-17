@@ -8,7 +8,7 @@ long long num[100001];
 
 long long dp(int n) {
 
-	if (d[n] > 0) // 메모이제이션, DP에선 배열을 꼭 사용하고 메모이제이션은 항상 이와 같다.
+	if (d[n] > 0)
 		return d[n];
 
 	for (int i = n-1; i > 0; i--) {
